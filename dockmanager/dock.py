@@ -19,7 +19,7 @@
 
 from PySide2 import QtWidgets
 from widgetdict import getWidgetById, widgetIds
-# from friture.controlbar import ControlBar
+from controlbar import ControlBar
 
 
 class Dock(QtWidgets.QWidget):
@@ -32,7 +32,11 @@ class Dock(QtWidgets.QWidget):
 
         self.setObjectName(name)
 
+        self.control_bar = ControlBar(self)
+        self.control_bar.close_button.clicked.connect(self.closeClicked)
+
         self.layout = QtWidgets.QVBoxLayout(self)
+        self.layout.addWidget(self.control_bar)
         self.layout.setContentsMargins(0, 0, 0, 0)
 
         self.audiowidget = None
